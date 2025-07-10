@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
+        protocol: 'https',
+        hostname: 'koperasi.siber.net.id',
+        port: '',
+        pathname: '/image/**',
+      },
+      {
         protocol: "https",
         hostname: "koperasi.siber.net.id",
         pathname: "/api/**",
