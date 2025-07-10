@@ -1,4 +1,4 @@
-import { IColumn } from "@/Components/Ui/DataTable/DataTable";
+import { IColumn } from "@/components/Ui/DataTable/DataTable";
 
 export const COLUMN_LIST: IColumn[] = [
   {

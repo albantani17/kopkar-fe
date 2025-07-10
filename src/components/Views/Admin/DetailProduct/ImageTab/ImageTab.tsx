@@ -11,7 +11,7 @@ import Image from "next/image";
 import useImageTab from "./useImageTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
-import InputFile from "@/Components/Ui/InputFile";
+import InputFile from "@/components/Ui/InputFile";
 import { IUpdateProduct } from "@/types/Product";
 
 interface PropTypes {

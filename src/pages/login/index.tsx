@@ -1,5 +1,5 @@
-import PageHead from "@/Components/Commons/PageHead";
-import Login from "@/Components/Views/Login";
+import PageHead from "@/components/Commons/PageHead";
+import Login from "@/components/Views/Login";
 
 const LoginPage = () => {
   return (

@@ -15,7 +15,7 @@ import { Controller } from "react-hook-form";
 import { useEffect } from "react";
 import { montserrat } from "@/pages/_app";
 import useAddProductModal from "./useAddProductModal";
-import InputFile from "@/Components/Ui/InputFile";
+import InputFile from "@/components/Ui/InputFile";
 import { ICategory } from "@/types/Category";
 
 interface PropTypes {

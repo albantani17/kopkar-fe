@@ -1,5 +1,5 @@
-import DashboardLayout from "@/Components/Layouts/DashboardLayout";
-import Category from "@/Components/Views/Admin/Category";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
+import Category from "@/components/Views/Admin/Category";
 
 const CategoryPage = () => {
   return (

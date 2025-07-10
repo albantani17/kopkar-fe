@@ -1,5 +1,5 @@
-import DashboardLayout from "@/Components/Layouts/DashboardLayout";
-import DetailKaryawan from "@/Components/Views/Admin/DetailKaryawan";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
+import DetailKaryawan from "@/components/Views/Admin/DetailKaryawan";
 
 const DetailKaryawanPage = () => {
   return (

@@ -1,4 +1,4 @@
-import DataTable from "@/Components/Ui/DataTable";
+import DataTable from "@/components/Ui/DataTable";
 import { COLUMN_LIST } from "./Karyawan.constant";
 import useKaryawan from "./useKaryawan";
 import { Key, useCallback, useEffect } from "react";

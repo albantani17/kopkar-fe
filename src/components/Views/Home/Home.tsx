@@ -2,8 +2,8 @@ import { Card, CardBody, CardFooter, Skeleton } from "@heroui/react";
 import useHome from "./useHome";
 import { IProduct } from "@/types/Product";
 import { Fragment } from "react";
-import CardProduct from "@/Components/Ui/CardProduct";
-import SearchWithCategory from "@/Components/Ui/SearchWithCategory";
+import CardProduct from "@/components/Ui/CardProduct";
+import SearchWithCategory from "@/components/Ui/SearchWithCategory";
 
 const Home = () => {
   const { dataProduct, isLoadingProduct, isRefetchingProduct } = useHome();

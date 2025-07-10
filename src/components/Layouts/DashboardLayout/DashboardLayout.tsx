@@ -1,15 +1,14 @@
-import Sidebar from "@/Components/Ui/Sidebar";
+import Sidebar from "@/components/Ui/Sidebar";
 import { ReactNode, useState } from "react";
 import { SIDEBAR_ITEMS } from "./DashboardLayout.constant";
 import { Navbar, NavbarMenuToggle } from "@heroui/react";
-import PageHead from "@/Components/Commons/PageHead";
+import PageHead from "@/components/Commons/PageHead";
 
 interface PropType {
   children: ReactNode;
   title: string;
   description: string;
 }
-
 const DashboardLayout = (props: PropType) => {
   const { children, title, description } = props;
   const [open, setOpen] = useState(false);

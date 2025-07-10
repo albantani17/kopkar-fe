@@ -1,5 +1,5 @@
-import LandingPageLayout from "@/Components/Layouts/LandingPageLayout";
-import Home from "@/Components/Views/Home/Home";
+import LandingPageLayout from "@/components/Layouts/LandingPageLayout";
+import Home from "@/components/Views/Home/Home";
 
 export default function HomePage() {
   return (

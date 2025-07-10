@@ -1,5 +1,5 @@
-import DashboardLayout from "@/Components/Layouts/DashboardLayout";
-import DetailProduct from "@/Components/Views/Admin/DetailProduct";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
+import DetailProduct from "@/components/Views/Admin/DetailProduct";
 
 const DetailProductPage = () => {
   return (

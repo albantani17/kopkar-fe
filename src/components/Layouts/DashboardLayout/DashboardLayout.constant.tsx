@@ -1,4 +1,4 @@
-import { SidebarItems } from "@/Components/Ui/Sidebar/Sidebar";
+import { SidebarItems } from "@/components/Ui/Sidebar/Sidebar";
 import { CiShoppingTag } from "react-icons/ci";
 import { FaShop } from "react-icons/fa6";
 import { MdPeople } from "react-icons/md";
