@@ -1,10 +1,15 @@
-FROM node:22-alpine 
+FROM node:lts-alpine 
 
 WORKDIR /app
+
+RUN corepack enable
+
 COPY package.json ./
-RUN npm install
+
+RUN pnpm install
+
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["pnpm", "dev"]
