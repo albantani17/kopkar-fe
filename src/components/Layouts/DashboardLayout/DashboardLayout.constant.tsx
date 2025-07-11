@@ -1,6 +1,6 @@
 import { SidebarItems } from "@/components/Ui/Sidebar/Sidebar";
 import { CiShoppingTag } from "react-icons/ci";
-import { FaShop } from "react-icons/fa6";
+import { FaShop, FaWpforms } from "react-icons/fa6";
 import { MdPeople } from "react-icons/md";
 
 const SIDEBAR_ITEMS: SidebarItems[] = [
@@ -9,6 +9,12 @@ const SIDEBAR_ITEMS: SidebarItems[] = [
     label: "Karyawan",
     icon: <MdPeople />,
     href: "/admin/karyawan",
+  },
+  {
+    key: "pengajuan",
+    label: "Pengajuan",
+    icon: <FaWpforms />,
+    href: "/admin/pengajuan",
   },
   {
     key: "kategori-produk",

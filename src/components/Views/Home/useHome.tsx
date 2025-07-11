@@ -20,13 +20,20 @@ const useHome = () => {
     isLoading: isLoadingProduct,
     refetch: refetchProduct,
     isRefetching: isRefetchingProduct,
+    isError: isErrorProduct,
   } = useQuery({
     queryKey: ["product", search, categoryId],
     queryFn: getProduct,
     enabled: true,
   });
 
-  return { dataProduct, isLoadingProduct, refetchProduct, isRefetchingProduct };
+  return {
+    dataProduct,
+    isLoadingProduct,
+    refetchProduct,
+    isRefetchingProduct,
+    isErrorProduct,
+  };
 };
 
 export default useHome;

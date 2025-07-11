@@ -13,6 +13,7 @@ import { montserrat } from "@/pages/_app";
 import useCategoryStore from "@/store/useCategoryStore";
 import useSearchStore from "@/store/useSearchStore";
 import useDebounce from "@/hooks/useDebounce";
+import { Key } from "react";
 
 const SearchWithCategory = () => {
   const { dataCategory } = useSearchWithCategory();
@@ -26,25 +27,31 @@ const SearchWithCategory = () => {
   };
 
   return (
-    <Card className="w-full">
+    <Card className='w-full'>
       <CardBody>
-        <div className="flex flex-col lg:flex-row justify-start lg:justify-between gap-4">
+        <div className='flex flex-col lg:flex-row justify-start lg:justify-between gap-4'>
           <Input
             startContent={<CiSearch />}
-            variant="bordered"
+            variant='bordered'
             isClearable
-            placeholder="Cari Produk"
-            className="w-full lg:w-1/3"
+            placeholder='Cari Produk'
+            className='w-full lg:w-1/3'
             onClear={() => setSearch("")}
             onChange={(e) => handleSetSearch(e.target.value)}
           />
           <Autocomplete
-            placeholder="Pilih Kategori"
+            placeholder='Pilih Kategori'
             className={cn("w-full lg:w-1/3", montserrat.className)}
-            variant="bordered"
+            variant='bordered'
             onClear={() => setCategoryId("")}
             defaultItems={dataCategory || []}
-            onSelectionChange={(value) => setCategoryId(value)}
+            onSelectionChange={(value) => {
+              if (!value) {
+                setCategoryId("");
+                return;
+              }
+              setCategoryId(value);
+            }}
           >
             {(item: ICategory) => (
               <AutocompleteItem className={montserrat.className} key={item.id}>

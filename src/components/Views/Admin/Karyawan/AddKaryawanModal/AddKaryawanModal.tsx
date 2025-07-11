@@ -17,6 +17,7 @@ import { Controller } from "react-hook-form";
 import { FaEye } from "react-icons/fa6";
 import { FiEyeOff } from "react-icons/fi";
 import { useEffect } from "react";
+import { CABANG } from "@/constants/cabang.constant";
 
 interface PropTypes {
   isOpen: boolean;
@@ -59,15 +60,15 @@ const AddKaryawanModal = (props: PropTypes) => {
           <ModalHeader>Tambah Karyawan</ModalHeader>
           <ModalBody>
             <h2>Informasi Login</h2>
-            <div className="flex flex-col gap-4 mb-4">
+            <div className='flex flex-col gap-4 mb-4'>
               <Controller
                 control={control}
-                name="nik"
+                name='nik'
                 render={({ field }) => (
                   <Input
                     {...field}
-                    variant="bordered"
-                    label="NIK"
+                    variant='bordered'
+                    label='NIK'
                     autoFocus
                     errorMessage={errors.nik?.message}
                     isInvalid={!!errors.nik}
@@ -75,20 +76,20 @@ const AddKaryawanModal = (props: PropTypes) => {
                 )}
               />
               <Controller
-                name="password"
+                name='password'
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    variant="bordered"
+                    variant='bordered'
                     type={visiblePassword.password ? "text" : "password"}
-                    label="Password"
+                    label='Password'
                     errorMessage={errors.password?.message}
                     isInvalid={!!errors.password}
                     endContent={
                       <button
-                        type="button"
-                        className="text-sm text-default-400"
+                        type='button'
+                        className='text-sm text-default-400'
                         onClick={() => handleVisiblePassword("password")}
                       >
                         {visiblePassword.password ? (
@@ -102,20 +103,20 @@ const AddKaryawanModal = (props: PropTypes) => {
                 )}
               />
               <Controller
-                name="confirmPassword"
+                name='confirmPassword'
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    variant="bordered"
+                    variant='bordered'
                     type={visiblePassword.confirmPassword ? "text" : "password"}
-                    label="Konfirmasi Password"
+                    label='Konfirmasi Password'
                     errorMessage={errors.confirmPassword?.message}
                     isInvalid={!!errors.confirmPassword}
                     endContent={
                       <button
-                        type="button"
-                        className="text-sm text-default-400"
+                        type='button'
+                        className='text-sm text-default-400'
                         onClick={() => handleVisiblePassword("confirmPassword")}
                       >
                         {visiblePassword.confirmPassword ? (
@@ -130,23 +131,25 @@ const AddKaryawanModal = (props: PropTypes) => {
               />
               <Controller
                 control={control}
-                name="role"
+                name='role'
                 render={({ field }) => (
                   <Select
                     {...field}
-                    variant="bordered"
-                    aria-label="Role"
-                    label="Role"
+                    variant='bordered'
+                    aria-label='Role'
+                    label='Role'
                     items={[
                       { label: "Admin", value: ROLE.ADMIN },
                       { label: "Karyawan", value: ROLE.KARYAWAN },
                     ]}
+                    errorMessage={errors.role?.message}
+                    isInvalid={!!errors.role}
                   >
                     {(item) => (
                       <SelectItem
                         className={montserrat.className}
                         key={item.value}
-                        aria-labelledby="role"
+                        aria-labelledby='role'
                       >
                         {item.label}
                       </SelectItem>
@@ -156,15 +159,15 @@ const AddKaryawanModal = (props: PropTypes) => {
               />
             </div>
             <h2>Informasi Lengkap</h2>
-            <div className="flex flex-col gap-4 mb-4">
+            <div className='flex flex-col gap-4 mb-4'>
               <Controller
                 control={control}
-                name="name"
+                name='name'
                 render={({ field }) => (
                   <Input
                     {...field}
-                    variant="bordered"
-                    label="Nama Lengkap"
+                    variant='bordered'
+                    label='Nama Lengkap'
                     isInvalid={!!errors.name}
                     errorMessage={errors.name?.message}
                   />
@@ -172,13 +175,56 @@ const AddKaryawanModal = (props: PropTypes) => {
               />
               <Controller
                 control={control}
-                name="email"
+                name='cabang'
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    variant='bordered'
+                    aria-label='Cabang'
+                    label='Cabang'
+                    items={[
+                      { label: "PANDEGLANG", value: CABANG.PANDEGLANG },
+                      { label: "PANIMBANG", value: CABANG.PANIMBANG },
+                      { label: "CIBALIUNG", value: CABANG.CIBALIUNG },
+                      { label: "MALINGPING", value: CABANG.MALINGPING },
+                    ]}
+                    isInvalid={!!errors.cabang}
+                    errorMessage={errors.cabang?.message}
+                  >
+                    {(item) => (
+                      <SelectItem
+                        className={montserrat.className}
+                        key={item.value}
+                        aria-labelledby='cabang'
+                      >
+                        {item.label}
+                      </SelectItem>
+                    )}
+                  </Select>
+                )}
+              />
+              <Controller
+                control={control}
+                name='departemen'
                 render={({ field }) => (
                   <Input
                     {...field}
-                    variant="bordered"
-                    label="Email"
-                    type="email"
+                    variant='bordered'
+                    label='Nama departemen'
+                    isInvalid={!!errors.departemen}
+                    errorMessage={errors.departemen?.message}
+                  />
+                )}
+              />
+              <Controller
+                control={control}
+                name='email'
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    variant='bordered'
+                    label='Email'
+                    type='email'
                     isInvalid={!!errors.email}
                     errorMessage={errors.email?.message}
                   />
@@ -186,12 +232,12 @@ const AddKaryawanModal = (props: PropTypes) => {
               />
               <Controller
                 control={control}
-                name="phone"
+                name='phone'
                 render={({ field }) => (
                   <Input
                     {...field}
-                    label="No. HP"
-                    variant="bordered"
+                    label='No. HP'
+                    variant='bordered'
                     isInvalid={!!errors.phone}
                     errorMessage={errors.phone?.message}
                   />
@@ -200,21 +246,21 @@ const AddKaryawanModal = (props: PropTypes) => {
             </div>
           </ModalBody>
           <ModalFooter>
-            <div className="flex justify-end gap-2">
+            <div className='flex justify-end gap-2'>
               <Button
-                color="danger"
+                color='danger'
                 onPress={onClose}
                 disabled={isPendingAddKaryawan}
               >
                 Kembali
               </Button>
               <Button
-                color="primary"
-                type="submit"
+                color='primary'
+                type='submit'
                 disabled={isPendingAddKaryawan}
                 isLoading={isPendingAddKaryawan}
-                spinnerPlacement="end"
-                spinner={<Spinner color="white" size="sm" />}
+                spinnerPlacement='end'
+                spinner={<Spinner color='white' size='sm' />}
               >
                 Tambah
               </Button>

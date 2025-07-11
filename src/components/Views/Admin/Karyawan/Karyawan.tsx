@@ -12,6 +12,7 @@ import AddKaryawanModal from "./AddKaryawanModal";
 import DeleteKaryawanModal from "./DeleteKaryawanModal";
 import { montserrat } from "@/pages/_app";
 import Link from "next/link";
+import { convertIDR } from "@/Utils/currency";
 
 const Karyawan = () => {
   const { isReady } = useRouter();
@@ -43,30 +44,30 @@ const Karyawan = () => {
       const cellValue = karyawan[columnKey as keyof typeof karyawan];
       switch (columnKey) {
         case "simpanan":
-          return `Rp. ${cellValue?.toLocaleString("id-ID")}`;
+          return `${convertIDR(Number(cellValue))}`;
         case "pinjaman":
-          return `Rp. ${cellValue?.toLocaleString("id-ID")}`;
+          return `${convertIDR(Number(cellValue))}`;
         case "action":
           return (
-            <div className="flex gap-4">
-              <Tooltip content="Detail" className={montserrat.className}>
+            <div className='flex gap-4'>
+              <Tooltip content='Detail' className={montserrat.className}>
                 <Button
                   isIconOnly
-                  radius="full"
-                  variant="flat"
-                  color="primary"
+                  radius='full'
+                  variant='flat'
+                  color='primary'
                   as={Link}
                   href={`/admin/karyawan/${karyawan.id}`}
                 >
                   <BiDetail size={20} />
                 </Button>
               </Tooltip>
-              <Tooltip content="Hapus" className={montserrat.className}>
+              <Tooltip content='Hapus' className={montserrat.className}>
                 <Button
                   isIconOnly
-                  radius="full"
-                  variant="flat"
-                  color="danger"
+                  radius='full'
+                  variant='flat'
+                  color='danger'
                   onPress={() => {
                     setId(`${karyawan.id}`);
                     deleteKaryawanModal.onOpen();
@@ -81,23 +82,23 @@ const Karyawan = () => {
           return cellValue as React.ReactNode;
       }
     },
-    [deleteKaryawanModal, setId],
+    [deleteKaryawanModal, setId]
   );
 
   return (
     <>
       <DataTable
-        buttonTopContentLabel="Tambah Karyawan"
+        buttonTopContentLabel='Tambah Karyawan'
         onClickButtonTopContent={addKaryawanModal.onOpen}
         columns={COLUMN_LIST}
         data={dataKaryawan?.data || []}
         totalPages={dataKaryawan?.pagination?.totalPages || 1}
         isLoading={isLoadingKaryawan || isRefetchingKaryawan}
-        emptyContent="Data Karyawan Kosong"
+        emptyContent='Data Karyawan Kosong'
         renderCell={renderCell}
         showSearch
         showLimit
-        searchLabel="Cari Nama, NIK, atau Email"
+        searchLabel='Cari Nama, NIK, atau Email'
       />
       <AddKaryawanModal {...addKaryawanModal} refetch={refetchKaryawan} />
       <DeleteKaryawanModal

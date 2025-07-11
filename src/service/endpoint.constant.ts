@@ -5,6 +5,7 @@ const endpoint = {
   PRODUCTS: "/products",
   UPLOAD: "/media",
   CONFIGURATION: "/configuration",
+  PENGAJUAN: "/pengajuan",
 };
 
 export default endpoint;

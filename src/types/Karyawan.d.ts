@@ -2,6 +2,8 @@ export interface IKaryawan {
   id?: string;
   nik?: string;
   name?: string;
+  cabang?: string;
+  departemen?: string;
   email?: string;
   phone?: string;
   role?: string;
@@ -16,6 +18,8 @@ export interface ICreateKaryawan {
   password: string;
   confirmPassword?: string;
   name: string;
+  cabang: string;
+  departemen: string;
   email: string;
   phone: string;
   role: strinsg;

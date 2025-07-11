@@ -15,9 +15,11 @@ const addKaryawanSchema = Yup.object().shape({
     .required("Password wajib diisi"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), ""],
-    "Password tidak sama",
+    "Password tidak sama"
   ),
   name: Yup.string().required("Name wajib diisi"),
+  cabang: Yup.string().required("Cabang wajib diisi"),
+  departemen: Yup.string().required("Departemen wajib diisi"),
   email: Yup.string().required("Email wajib diisi"),
   phone: Yup.string().required("Phone wajib diisi"),
   role: Yup.string().required("Role wajib diisi"),
