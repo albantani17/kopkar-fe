@@ -2,6 +2,10 @@ import { IColumn } from "@/components/Ui/DataTable/DataTable";
 
 const COLUMN_LIST: IColumn[] = [
   {
+    uid: "kodePengajuan",
+    name: "KODE PENGAJUAN",
+  },
+  {
     uid: "name",
     name: "NAMA",
   },

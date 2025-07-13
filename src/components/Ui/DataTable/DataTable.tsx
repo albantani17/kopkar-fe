@@ -63,11 +63,11 @@ const DataTable = (props: PropTypes) => {
 
   const TopContent = useMemo(() => {
     return (
-      <div className="flex flex-col-reverse items-start justify-between gap-y-4 lg:flex-row lg:items-center">
+      <div className='flex flex-col-reverse items-start justify-between gap-y-4 lg:flex-row lg:items-center'>
         {showSearch && (
           <Input
             isClearable
-            className="w-full sm:max-w-[24%]"
+            className='w-full sm:max-w-[24%]'
             placeholder={searchLabel}
             startContent={<CiSearch />}
             onClear={handleClearSearch}
@@ -75,7 +75,7 @@ const DataTable = (props: PropTypes) => {
           />
         )}
         {buttonTopContentLabel && (
-          <Button color="primary" onPress={onClickButtonTopContent}>
+          <Button color='primary' onPress={onClickButtonTopContent}>
             {buttonTopContentLabel}
           </Button>
         )}
@@ -92,16 +92,16 @@ const DataTable = (props: PropTypes) => {
 
   const BottomContent = useMemo(() => {
     return (
-      <div className="flex items-center justify-center lg:justify-between">
+      <div className='flex items-center justify-center lg:justify-between'>
         {showLimit && (
           <Select
-            className="hidden max-w-36 lg:block"
-            size="md"
-            aria-label="Limit"
+            className='hidden max-w-36 lg:block'
+            size='md'
+            aria-label='Limit'
             selectedKeys={[`${currentLimit}`]}
-            selectionMode="single"
+            selectionMode='single'
             onChange={handleChangeLimit}
-            startContent={<p className="text-small">Show:</p>}
+            startContent={<p className='text-small'>Show:</p>}
             disallowEmptySelection
           >
             {LIMIT_LISTS.map((item) => (
@@ -120,8 +120,8 @@ const DataTable = (props: PropTypes) => {
             className={montserrat.className}
             isCompact
             showControls
-            aria-label="Pagination"
-            color="primary"
+            aria-label='Pagination'
+            color='primary'
             page={Number(currentPage)}
             total={totalPages}
             onChange={handleChangePage}
@@ -141,16 +141,16 @@ const DataTable = (props: PropTypes) => {
 
   return (
     <Table
+      aria-label='Example table with custom cells'
       bottomContent={BottomContent}
-      isCompact
       isStriped
-      bottomContentPlacement="outside"
+      bottomContentPlacement='outside'
       classNames={{
         base: "max-w-full",
         wrapper: cn({ "overflow-x-hidden": isLoading }),
       }}
       topContent={TopContent}
-      topContentPlacement="outside"
+      topContentPlacement='outside'
     >
       <TableHeader columns={columns}>
         {(column) => (
@@ -165,13 +165,13 @@ const DataTable = (props: PropTypes) => {
         isLoading={isLoading}
         items={data}
         loadingContent={
-          <div className="flex h-full w-full items-center justify-center bg-foreground-700/30 backdrop-blur-sm">
-            <Spinner color="primary" />
+          <div className='flex h-full w-full items-center justify-center bg-foreground-700/30 backdrop-blur-sm'>
+            <Spinner color='primary' />
           </div>
         }
       >
         {(item) => (
-          <TableRow key={item._id as Key}>
+          <TableRow key={item.id as Key}>
             {(columnKey) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
             )}

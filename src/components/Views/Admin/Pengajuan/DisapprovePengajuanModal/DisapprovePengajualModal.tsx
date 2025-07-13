@@ -38,6 +38,7 @@ const DisapprovePengajuanModal = (props: PropTypes) => {
     if (isSuccessUpdatePengajuan) {
       onClose();
       refetch();
+      reset();
       setId("");
     }
   }, [isSuccessUpdatePengajuan, onClose, refetch]);

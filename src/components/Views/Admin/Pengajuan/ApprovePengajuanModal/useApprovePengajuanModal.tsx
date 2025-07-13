@@ -1,5 +1,4 @@
 import pengajuanService from "@/service/pengajuan.service";
-import { IUpdateStatusPengajuan } from "@/types/Pengajuan";
 import { errorResponse } from "@/Utils/error";
 import { addToast } from "@heroui/react";
 import { useMutation } from "@tanstack/react-query";

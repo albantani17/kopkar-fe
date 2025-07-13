@@ -38,7 +38,7 @@ const Home = () => {
         {/* Bagian Bawah (Konten Produk) */}
         <div className='px-4 md:px-16 lg:px-40 py-2'>
           {/* KUNCI #3: Padding atas (pt-24) untuk memberi ruang agar konten tidak tertutup search bar */}
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-10'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-10 my-10'>
             {!isLoadingProduct && !isRefetchingProduct && !isErrorProduct
               ? dataProduct?.data.map((item: IProduct) => (
                   <CardProduct product={item} key={item.id} />

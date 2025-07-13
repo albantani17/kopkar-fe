@@ -26,11 +26,11 @@ export async function middleware(request: NextRequest) {
     }
 
     if (token?.user?.role !== "admin") {
-      return NextResponse.redirect(new URL("/karyawan", request.url));
+      return NextResponse.redirect(new URL("/karyawan/informasi", request.url));
     }
 
     if (pathname === "/admin") {
-      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+      return NextResponse.redirect(new URL("/admin/karyawan", request.url));
     }
   }
 
@@ -39,6 +39,10 @@ export async function middleware(request: NextRequest) {
       const url = new URL("/login", request.url);
       url.searchParams.set("callbackUrl", encodeURI(request.url));
       return NextResponse.redirect(url);
+    }
+
+    if (pathname === "/karyawan") {
+      return NextResponse.redirect(new URL("/karyawan/informasi", request.url));
     }
   }
 }

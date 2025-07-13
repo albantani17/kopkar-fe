@@ -23,7 +23,7 @@ interface PropTypes {
 const DetailPengajuanModal = (props: PropTypes) => {
   const { isOpen, onClose, onOpenChange, id } = props;
 
-  const { control, setValue, dataDetailPengajuan, isLoading } =
+  const { control, setValue, dataDetailPengajuan } =
     useDetailPengajuanModal(id);
 
   useEffect(() => {

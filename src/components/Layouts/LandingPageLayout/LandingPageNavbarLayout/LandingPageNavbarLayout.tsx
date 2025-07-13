@@ -35,7 +35,6 @@ const LandingPageNavbarLayout = () => {
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
   return (
     <Fragment>
-      {" "}
       <Navbar
         maxWidth="full"
         shouldHideOnScroll

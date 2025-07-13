@@ -13,7 +13,6 @@ import { montserrat } from "@/pages/_app";
 import useCategoryStore from "@/store/useCategoryStore";
 import useSearchStore from "@/store/useSearchStore";
 import useDebounce from "@/hooks/useDebounce";
-import { Key } from "react";
 
 const SearchWithCategory = () => {
   const { dataCategory } = useSearchWithCategory();

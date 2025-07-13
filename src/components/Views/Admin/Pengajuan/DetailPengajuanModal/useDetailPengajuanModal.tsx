@@ -1,5 +1,5 @@
 import pengajuanService from "@/service/pengajuan.service";
-import { IPengajuan, JenisPengajuan } from "@/types/Pengajuan";
+import { IPengajuan } from "@/types/Pengajuan";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";

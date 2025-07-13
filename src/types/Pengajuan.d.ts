@@ -16,6 +16,17 @@ export interface IPengajuan {
   noRekening?: string;
 }
 
+export interface ICreatePengajuanPinjaman {
+  jumlah: number | string;
+  noRekening: string;
+  alasan: string;
+}
+
+export interface ICreatePengajuanSimpanan {
+  jumlah: number | string;
+  noRekening: string;
+}
+
 export interface IUpdateStatusPengajuan {
   status: string;
   alasanDitolak?: string;

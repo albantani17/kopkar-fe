@@ -5,12 +5,18 @@ import { Key, useCallback, useEffect } from "react";
 import { IKaryawan } from "@/types/Karyawan";
 import { useRouter } from "next/router";
 import useChangeUrl from "@/hooks/useChangeUrl";
-import { Button, Tooltip, useDisclosure } from "@heroui/react";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  useDisclosure,
+} from "@heroui/react";
 import { BiDetail } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdOutlineArrowDropDownCircle } from "react-icons/md";
 import AddKaryawanModal from "./AddKaryawanModal";
 import DeleteKaryawanModal from "./DeleteKaryawanModal";
-import { montserrat } from "@/pages/_app";
 import Link from "next/link";
 import { convertIDR } from "@/Utils/currency";
 
@@ -49,34 +55,40 @@ const Karyawan = () => {
           return `${convertIDR(Number(cellValue))}`;
         case "action":
           return (
-            <div className='flex gap-4'>
-              <Tooltip content='Detail' className={montserrat.className}>
-                <Button
-                  isIconOnly
-                  radius='full'
-                  variant='flat'
-                  color='primary'
-                  as={Link}
-                  href={`/admin/karyawan/${karyawan.id}`}
-                >
-                  <BiDetail size={20} />
+            <Dropdown>
+              <DropdownTrigger>
+                <Button variant='flat' radius='full' isIconOnly color='primary'>
+                  <MdOutlineArrowDropDownCircle size={25} />
                 </Button>
-              </Tooltip>
-              <Tooltip content='Hapus' className={montserrat.className}>
-                <Button
-                  isIconOnly
-                  radius='full'
-                  variant='flat'
-                  color='danger'
-                  onPress={() => {
-                    setId(`${karyawan.id}`);
-                    deleteKaryawanModal.onOpen();
-                  }}
-                >
-                  <MdDelete size={20} />
-                </Button>
-              </Tooltip>
-            </div>
+              </DropdownTrigger>
+              <DropdownMenu aria-label='Dropdown menu'>
+                <DropdownItem key={"detail"}>
+                  <Button
+                    fullWidth
+                    variant='light'
+                    startContent={<BiDetail size={20} />}
+                    as={Link}
+                    href={`/admin/karyawan/${karyawan.id}`}
+                  >
+                    Detail
+                  </Button>
+                </DropdownItem>
+                <DropdownItem key={"delete"}>
+                  <Button
+                    variant='light'
+                    fullWidth
+                    color='danger'
+                    startContent={<MdDelete size={20} />}
+                    onPress={() => {
+                      setId(`${karyawan.id}`);
+                      deleteKaryawanModal.onOpen();
+                    }}
+                  >
+                    Hapus
+                  </Button>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           );
         default:
           return cellValue as React.ReactNode;

@@ -23,9 +23,6 @@ const Pengajuan = () => {
     isLoadingPengajuan,
     refetchPengajuan,
     isRefetchingPengajuan,
-    handleDeletePengajuan,
-    isSuccessDeletePengajuan,
-    isPendingDeletePengajuan,
     setId,
     id,
   } = usePengajuan();

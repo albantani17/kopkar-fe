@@ -15,7 +15,7 @@ const validateSchema = Yup.object().shape({
   pinjaman: Yup.string().required("Pinjaman wajib diisi"),
 });
 
-const useKaryawan = () => {
+const useInformasi = () => {
   const { control, setValue } = useForm({
     resolver: yupResolver(validateSchema),
   });
@@ -50,4 +50,4 @@ const useKaryawan = () => {
   };
 };
 
-export default useKaryawan;
+export default useInformasi;

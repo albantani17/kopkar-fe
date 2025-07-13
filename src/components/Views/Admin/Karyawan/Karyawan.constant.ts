@@ -23,11 +23,11 @@ export const COLUMN_LIST: IColumn[] = [
   },
   {
     uid: "simpanan",
-    name: "SIMPANAN",
+    name: "SALDO SIMPANAN",
   },
   {
     uid: "pinjaman",
-    name: "PINJAMAN",
+    name: "TOTAL PINJAMAN",
   },
   {
     uid: "action",
