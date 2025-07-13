@@ -1,7 +1,6 @@
 import useChangeUrl from "@/hooks/useChangeUrl";
 import pengajuanService from "@/service/pengajuan.service";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 
 const useHistoryPengajuan = () => {
   const { currentPage, currentLimit, currentSearch } = useChangeUrl();

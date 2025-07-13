@@ -14,7 +14,6 @@ const HistoryPengajuan = () => {
   const {
     dataHistoryPengajuan,
     isLoadingHistoryPengajuan,
-    refetchHistoryPengajuan,
     isRefetchingHistoryPengajuan,
   } = useHistoryPengajuan();
 
