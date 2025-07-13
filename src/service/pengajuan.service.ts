@@ -8,6 +8,8 @@ import {
 
 const pengajuanService = {
   find: (params?: string) => instance.get(`${endpoint.PENGAJUAN}?${params}`),
+  findByUser: (params: string) =>
+    instance.get(`${endpoint.PENGAJUAN}/user?${params}`),
   findOne: (id: string) => instance.get(`${endpoint.PENGAJUAN}/${id}`),
   createPengajuanSimpanan: (payload: ICreatePengajuanSimpanan) =>
     instance.post(endpoint.PENGAJUAN, {
