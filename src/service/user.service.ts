@@ -8,6 +8,8 @@ const userServices = {
     instance.post(`${endpoint.USERS}`, payload),
   update: (id: string, payload: IUpdateKaryawan) =>
     instance.patch(`${endpoint.USERS}/${id}`, payload),
+  updateSetor: (id: string, tipeSetor: string, jumlah: number) =>
+    instance.patch(`${endpoint.USERS}/${id}/setor`, { tipeSetor, jumlah }),
   delete: (id: string) => instance.delete(`${endpoint.USERS}/${id}`),
   get: (id: string) => instance.get(`${endpoint.USERS}/${id}`),
 };

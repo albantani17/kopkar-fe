@@ -63,6 +63,7 @@ const useKaryawan = () => {
     isSuccessDeleteKaryawan,
     isPendingDeleteKaryawan,
     setId,
+    id,
   };
 };
 

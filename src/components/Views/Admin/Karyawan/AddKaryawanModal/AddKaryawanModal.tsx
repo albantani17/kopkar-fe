@@ -51,6 +51,8 @@ const AddKaryawanModal = (props: PropTypes) => {
 
   return (
     <Modal
+      scrollBehavior='outside'
+      placement="center"
       className={montserrat.className}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
