@@ -36,7 +36,7 @@ const About = () => {
         <section className='mb-12 grid md:grid-cols-2 gap-8'>
           <div className='p-8 bg-white rounded-xl shadow-md'>
             <h3 className='text-2xl font-bold text-blue-800 mb-4'>Visi 🎯</h3>
-            <p className='italic text-gray-700'>"{dataKopkar.visi}"</p>
+            <p className='italic text-gray-700'>{`"${dataKopkar.visi}"`}</p>
           </div>
           <div className='p-8 bg-white rounded-xl shadow-md'>
             <h3 className='text-2xl font-bold text-blue-800 mb-4'>Misi 🚀</h3>
