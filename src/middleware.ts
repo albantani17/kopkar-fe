@@ -10,68 +10,59 @@ export async function middleware(request: NextRequest) {
     secret: environment.AUTH_SECRET,
   });
 
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
 
-  // Dapatkan host dan protokol yang benar dari header
+  // KUNCI #1: Bangun basis URL yang benar secara manual dari header
   const host = request.headers.get("host")!;
   const proto = request.headers.get("x-forwarded-proto")!;
+  const publicBaseUrl = `${proto}://${host}`; // Hasilnya: "https://koperasi.siber.net.id"
+
+  // KUNCI #2: Gabungkan dengan path dan query untuk mendapatkan URL lengkap yang benar
+  const correctFullUrl = `${publicBaseUrl}${pathname}${search}`;
 
   if (pathname === "/login" || pathname === "/register") {
     if (token) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/", publicBaseUrl));
     }
   }
 
-  // ===================== AWAL PERUBAHAN UNTUK /admin =====================
+  // --- Logika untuk /admin ---
   if (pathname.startsWith("/admin")) {
     if (!token) {
-      // 1. Bangun URL callback yang benar
-      const callbackUrl = new URL(request.url);
-      callbackUrl.protocol = proto;
-      callbackUrl.host = host;
-
-      // 2. Bangun URL login yang benar
-      const loginUrl = new URL("/login", callbackUrl); // Gunakan URL yang sudah diperbaiki sebagai basis
-      loginUrl.searchParams.set("callbackUrl", callbackUrl.href); // Set callbackUrl yang benar
-
+      const loginUrl = new URL("/login", publicBaseUrl);
+      loginUrl.searchParams.set("callbackUrl", correctFullUrl); // Gunakan URL yang sudah diperbaiki
       return NextResponse.redirect(loginUrl);
     }
 
     if (token?.user?.role !== "admin") {
-      // Ini sudah benar, tidak perlu diubah
-      return NextResponse.redirect(new URL("/karyawan/informasi", request.url));
+      return NextResponse.redirect(
+        new URL("/karyawan/informasi", publicBaseUrl)
+      );
     }
 
     if (pathname === "/admin") {
-      // Ini sudah benar, tidak perlu diubah
-      return NextResponse.redirect(new URL("/admin/karyawan", request.url));
+      return NextResponse.redirect(new URL("/admin/karyawan", publicBaseUrl));
     }
   }
-  // ===================== AKHIR PERUBAHAN UNTUK /admin ====================
 
-  // ===================== AWAL PERUBAHAN UNTUK /karyawan ==================
+  // --- Logika untuk /karyawan ---
   if (pathname.startsWith("/karyawan")) {
     if (!token) {
-      // 1. Bangun URL callback yang benar
-      const callbackUrl = new URL(request.url);
-      callbackUrl.protocol = proto;
-      callbackUrl.host = host;
-
-      // 2. Bangun URL login yang benar
-      const loginUrl = new URL("/login", callbackUrl); // Gunakan URL yang sudah diperbaiki sebagai basis
-      loginUrl.searchParams.set("callbackUrl", callbackUrl.href); // Set callbackUrl yang benar
-
+      const loginUrl = new URL("/login", publicBaseUrl);
+      loginUrl.searchParams.set("callbackUrl", correctFullUrl); // Gunakan URL yang sudah diperbaiki
       return NextResponse.redirect(loginUrl);
     }
 
     if (pathname === "/karyawan") {
-      // Ini sudah benar, tidak perlu diubah
-      return NextResponse.redirect(new URL("/karyawan/informasi", request.url));
+      return NextResponse.redirect(
+        new URL("/karyawan/informasi", publicBaseUrl)
+      );
     }
   }
-  // ===================== AKHIR PERUBAHAN UNTUK /karyawan =================
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/login", "/admin/:path*", "/karyawan/:path*"],
+  matcher: ["/login", "/register", "/admin/:path*", "/karyawan/:path*"],
 };
