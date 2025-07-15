@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith("/admin")) {
     if (!token) {
       const url = new URL("/login", request.url);
-      url.searchParams.set("callbackUrl", encodeURI(request.url));
+      url.searchParams.set("callbackUrl", request.url);
       return NextResponse.redirect(url);
     }
 
@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith("/karyawan")) {
     if (!token) {
       const url = new URL("/login", request.url);
-      url.searchParams.set("callbackUrl", encodeURI(request.url));
+      url.searchParams.set("callbackUrl", request.url);
       return NextResponse.redirect(url);
     }
 
