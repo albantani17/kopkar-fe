@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest) {
 
   if (pathname.startsWith("/admin")) {
     if (!token) {
-      const url = new URL("/auth/login", req.nextUrl.href);
+      const url = new URL("/login", req.nextUrl.href);
       url.searchParams.set("callbackUrl", encodeURI(req.nextUrl.href));
       return NextResponse.redirect(url);
     }
@@ -35,7 +35,7 @@ export async function middleware(req: NextRequest) {
 
   if (pathname.startsWith("/karyawan")) {
     if (!token) {
-      const url = new URL("/auth/login", req.nextUrl.href);
+      const url = new URL("/login", req.nextUrl.href);
       url.searchParams.set("callbackUrl", encodeURI(req.nextUrl.href));
       return NextResponse.redirect(url);
     }
