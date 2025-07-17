@@ -33,7 +33,7 @@ const useLogin = () => {
       callbackUrl,
     });
     if (result?.error && result?.status == 401) {
-      throw new Error(result?.error);
+      throw new Error("Login Gagal");
     }
   };
 

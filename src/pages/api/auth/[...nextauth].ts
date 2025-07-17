@@ -19,33 +19,36 @@ export default NextAuth({
         password: { label: "password", type: "password" },
       },
       async authorize(
-        credentials: Record<"nik" | "password", string> | undefined,
+        credentials: Record<"nik" | "password", string> | undefined
       ): Promise<UserExtended | null> {
-        const { nik, password } = credentials as {
-          nik: string;
-          password: string;
-        };
+        try {
+          const { nik, password } = credentials as {
+            nik: string;
+            password: string;
+          };
 
-        const result = await authServices.login({
-          nik,
-          password,
-        });
+          const result = await authServices.login({ nik, password });
+          const accessToken = result.data.data.accessToken;
 
-        const accessToken = result.data.data.accessToken;
+          const me = await authServices.me(accessToken);
+          const user = me.data.data;
 
-        const me = await authServices.me(accessToken);
-        const user = me.data.data;
+          if (
+            accessToken &&
+            result.status === 200 &&
+            user.id &&
+            me.status === 200
+          ) {
+            user.accessToken = accessToken;
+            return user;
+          }
 
-        if (
-          accessToken &&
-          result.status === 200 &&
-          user.id &&
-          me.status === 200
-        ) {
-          user.accessToken = accessToken;
-          return user;
-        } else {
+          // jika data tidak valid
           return null;
+        } catch (error) {
+          // tangani error dengan aman agar tidak trigger error page
+          console.error("Login error in authorize():", error);
+          return null; // biar tetap redirect ke halaman login biasa
         }
       },
     }),
