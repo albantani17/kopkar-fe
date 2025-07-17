@@ -11,36 +11,42 @@ export async function middleware(req: NextRequest) {
   });
 
   const { pathname } = req.nextUrl;
+  const baseUrl = environment.AUTH_URL;
+  const fullPath = req.nextUrl.pathname + req.nextUrl.search;
 
   if (pathname === "/login") {
     if (token) {
-      return NextResponse.redirect(new URL("/", req.nextUrl.href));
+      return NextResponse.redirect(new URL("/", encodeURI(baseUrl + fullPath)));
     }
   }
 
   if (pathname.startsWith("/admin")) {
     if (!token) {
-      const url = new URL("/login", req.nextUrl.href);
-      url.searchParams.set("callbackUrl", encodeURI(req.nextUrl.href));
+      const url = new URL("/login", baseUrl);
+      url.searchParams.set("callbackUrl", encodeURI(baseUrl + fullPath));
       return NextResponse.redirect(url);
     }
 
     if (token?.user?.role !== "admin") {
-      return NextResponse.redirect(new URL("/", req.nextUrl.href));
+      return NextResponse.redirect(new URL("/", encodeURI(baseUrl + fullPath)));
     }
     if (pathname === "/admin") {
-      return NextResponse.redirect(new URL("/admin/dashboard", req.nextUrl.href));
+      return NextResponse.redirect(
+        new URL("/admin/dashboard", encodeURI(baseUrl + fullPath))
+      );
     }
   }
 
   if (pathname.startsWith("/karyawan")) {
     if (!token) {
-      const url = new URL("/login", req.nextUrl.href);
-      url.searchParams.set("callbackUrl", encodeURI(req.nextUrl.href));
+      const url = new URL("/login", baseUrl);
+      url.searchParams.set("callbackUrl", encodeURI(baseUrl + fullPath));
       return NextResponse.redirect(url);
     }
     if (pathname === "/karyawan") {
-      return NextResponse.redirect(new URL("/karyawan/informasi", req.nextUrl.href));
+      return NextResponse.redirect(
+        new URL("/karyawan/informasi", encodeURI(baseUrl + fullPath))
+      );
     }
   }
 }
